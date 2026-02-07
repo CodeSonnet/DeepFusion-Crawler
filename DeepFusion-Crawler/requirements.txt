@@ -3,7 +3,7 @@ selenium>=4.10.0
 requests>=2.31.0
 beautifulsoup4>=4.12.0
 lxml>=4.9.0
-
+form DrissionPage import ChromiumPage
 # 数据处理
 pandas>=2.0.0
 numpy>=1.24.0
@@ -12,4 +12,5 @@ openpyxl>=3.1.0  # 用于读写Excel
 # 文本分析 (NLP)
 jieba>=0.42.1    # 中文分词
 snownlp>=0.12.3  # 简单情感分析
+
 matplotlib>=3.7.0 # 画图用
