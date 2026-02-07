@@ -5,7 +5,7 @@ Data acquisition and processing scripts for DeepFusion project.
 DeepFusion 项目的数据获取与处理模块。
 
 ## 📁 目录结构
-- `spiders/`: 包含京东、天猫及社交媒体的爬虫脚本 (基于 Selenium/Python)。
+- `spiders/`: 包含京东、天猫及社交媒体的爬虫脚本 (基于 DrissionPage/Python)。
 - `data/`: 数据集样例及字段说明。
 - `docs/`: 参考文献与技术文档。
 
