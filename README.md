@@ -1,20 +1,49 @@
-# DeepFusion-Crawler
-Data acquisition and processing scripts for DeepFusion project.
-# DeepFusion Data Acquisition Module
+# 📱 跨平台智能手机口碑舆情爬虫与决策分析系统
 
-DeepFusion 项目的数据获取与处理模块。
+本项目是国家级大学生创新创业训练计划（大创）的核心数据采集模块。旨在构建一个稳定、高效的自动化爬虫系统，定向收集当前主流旗舰手机（如 iPhone 17 Pro, 华为 P70, 小米 15 Pro 等）在头部电商平台的用户真实评价数据，为后续的多源异构数据融合、情感分析及消费者多准则决策（MCDM）模型提供坚实的数据支撑。
 
-## 📁 目录结构
-- `spiders/`: 包含京东、天猫及社交媒体的爬虫脚本 (基于 DrissionPage/Python)。
-- `data/`: 数据集样例及字段说明。
-- `docs/`: 参考文献与技术文档。
+项目目前已攻克并集成了对 **京东 (JD)** 和 **淘宝/天猫 (Taobao/Tmall)** 两大核心电商平台的数据定向爬取。
 
-## 🚀 快速开始
-1. 安装依赖:
-   pip install -r requirements.txt
+## ✨ 主要功能与技术突破
 
-2. 运行京东爬虫:
-   python spiders/jd_spider.py
+* **平台深度覆盖**: 支持国内最大的两大 3C 数码交易阵地，获取包含追评、点赞数、多图链接在内的全维度高价值数据。
+* **反爬风控降维打击**: 摒弃传统的 Requests/Selenium DOM 解析模式。
+  * **京东**: 采用 `DrissionPage` 拦截底层 `client.action` 数据包。独创 **“队列清空模式 (Queue Draining)”**，无视前端页面滑动卡顿，确保数据包 0 漏抓。
+  * **淘宝/天猫**: 采用动态挂载本地浏览器 `User Data` 实现登录状态持久化，完美绕过阿里盾滑块验证；利用正则表达式精准剥离 `mtopjsonp` 跨域外壳，还原核心 JSON 数据。
+* **结构化与标准化输出**: 针对不同平台异构的 API 返回格式进行了深度 Mapping，统一输出为包含 11 个核心字段的标准 `.json` 文件，实现“采集即清洗”。
 
-## 📊 数据字段说明
-目标爬取字段包括: `product_id`, `content`, `rating`, `timestamp` 等。
+## 🛠️ 技术栈
+
+* **Python 3.x**
+* **核心爬取库**:
+  * `DrissionPage`: 负责浏览器环境接管、网络包监听（Packet Interception）与自动化动作模拟。
+  * `json` & `re`: 负责复杂网络响应体的序列化与正则表达式解包。
+* **数据存储**: 标准 `JSON` 格式
+
+---
+
+## 🚀 快速开始与配置说明
+
+使用前请确保已安装核心依赖库：
+```bash
+pip install DrissionPage
+
+1. 京东商城爬虫 (spider_jd.py)
+此脚本通过监听京东商品详情页的 client.action 接口，结合动态长短休眠策略，实现多店铺的无缝轮询抓取。
+
+如何配置:
+打开 spider_jd.py 文件，找到顶部的 ⚙️ 配置区域，按需修改产品名称和店铺链接列表：
+
+# ================= ⚙️ 配置区域 =================
+# 产品名称，用于标记数据来源
+PRODUCT_NAME = "HuaWei P70"  
+
+# 目标车型的京东店铺链接列表 (请确保每个URL后有逗号)
+SHOP_URLS = [
+    "[https://item.jd.com/100106087181.html](https://item.jd.com/100106087181.html)", # 华为京东自营店
+    "[https://item.jd.com/100169786473.html](https://item.jd.com/100169786473.html)", # 京东手机直营旗舰店
+]
+
+# 爬取结果的保存路径
+JSON_FILE = 'data/jd_HuaWei_P70.json'
+# ===============================================
