@@ -27,7 +27,7 @@
 使用前请确保已安装核心依赖库：
 ```bash
 pip install DrissionPage
-### 1\.
+```bash
 
 #1. 京东商城爬虫 (spider_jd.py)#
 此脚本通过监听京东商品详情页的 client.action 接口，结合动态长短休眠策略，实现多店铺的无缝轮询抓取。
