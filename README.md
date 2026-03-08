@@ -93,4 +93,4 @@ python spider_taobao.py
 
 为了保证项目的工程规范与严谨性，关于具体的数据字段定义（Data Schema）、数据资产清单以及后续处理建议，请务必查阅数据目录下的专属数据文档：
 
-### 👉 点击查看详细数据文档 (data)
+### 👉 **[点击查看详细数据文档 (data README)](./data/README.md)**
