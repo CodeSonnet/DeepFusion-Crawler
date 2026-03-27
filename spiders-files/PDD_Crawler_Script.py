@@ -261,7 +261,7 @@ def save_json(data, filename, output_dir='../data/Pinduoduo'):
 
 # ==================== 配置 ====================
 
-COOKIE = """api_uid=Cix7XGm/hSmWJQBwXKrVAg==; _nano_fp=Xpm8n0gylpgYn5PqX9_v6MOK1eZp1IS42L2tg_75; webp=1; dilx=L0b~gVJ~8iH5qnUFYA~Wp; PDDAccessToken=H6POWQ7PDVTH5S5WSB4QAQHYYKGG5C52JDOQLSBC4APC5YFHKXFA120c03d; pdd_user_id=5395692311744; pdd_user_uin=ZP4NEYZLP4CZYAGTX5UFR6S4MU_GEXDA; cui_glyph_baseFontSize=106.667; jrpl=B0IYDNEgtY3PVVLzjPHq1wqx0VUwnLyb; njrpl=B0IYDNEgtY3PVVLzjPHq1wqx0VUwnLyb; pdd_vds=gaTcBxNcsTLcuBllmdNLxLxlGuBmNlLLmTsbTNnmBxIbLwubLcdBGubLBDLf"""
+COOKIE = """"""
 
 HEADERS = {
     "User-Agent": "Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/146.0.0.0 Safari/537.36 Edg/146.0.0.0",
