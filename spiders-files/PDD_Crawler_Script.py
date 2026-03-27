@@ -204,27 +204,24 @@ class PinduoduoCrawler:
         raw = f"{content}|{name}|pdd"
         return hashlib.md5(raw.encode()).hexdigest[:16]
 
-    def _save(self, reviews, keyword):
-        """保存数据"""
-        output_dir = os.path.join(os.path.dirname(__file__), '..', 'data', 'Pinduoduo')
-        os.makedirs(output_dir, exist_ok=True)
+def save_json(data, filename, output_dir='../data/Pinduoduo'):
+    """保存JSON"""
+    os.makedirs(output_dir, exist_ok=True)
+    path = os.path.join(output_dir, filename)
+    with open(path, 'w', encoding='utf-8') as f:
+        json.dump(data, f, ensure_ascii=False, indent=2)
+    print(f"保存到: {path}")
+    return path
 
-        safe_keyword = re.sub(r'[^\w\u4e00-\u9fff]', '_', keyword)
 
-        # 保存评论
-        review_file = os.path.join(output_dir, f"pdd_reviews_{safe_keyword}.json")
-        with open(review_file, 'w', encoding='utf-8') as f:
-            json.dump(reviews, f, ensure_ascii=False, indent=2)
+# ==================== 配置 ====================
 
-        print(f"  评论已保存: {review_file}")
+COOKIE = """api_uid=Cix7XGm/hSmWJQBwXKrVAg==; _nano_fp=Xpm8n0gylpgYn5PqX9_v6MOK1eZp1IS42L2tg_75; webp=1; dilx=L0b~gVJ~8iH5qnUFYA~Wp; PDDAccessToken=H6POWQ7PDVTH5S5WSB4QAQHYYKGG5C52JDOQLSBC4APC5YFHKXFA120c03d; pdd_user_id=5395692311744; pdd_user_uin=ZP4NEYZLP4CZYAGTX5UFR6S4MU_GEXDA; cui_glyph_baseFontSize=106.667; jrpl=B0IYDNEgtY3PVVLzjPHq1wqx0VUwnLyb; njrpl=B0IYDNEgtY3PVVLzjPHq1wqx0VUwnLyb; pdd_vds=gaTcBxNcsTLcuBllmdNLxLxlGuBmNlLLmTsbTNnmBxIbLwubLcdBGubLBDLf"""
 
-        # 生成统计
-        if reviews:
-            print(f"  示例评论:")
-            for i, r in enumerate(reviews[:3]):
-                content = r['content'][:40] + '...' if len(r['content']) > 40 else r['content']
-                print(f"    [{i+1}] {content}")
-                print(f"        时间:{r['date']} | 商品:{r['product_name'][:20]}")
+HEADERS = {
+    "User-Agent": "Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/146.0.0.0 Safari/537.36 Edg/146.0.0.0",
+    "Referer": "https://mobile.yangkeduo.com/",
+}
 
 
 # ==================== 主程序 ====================
