@@ -1,4 +1,29 @@
 .idea/
+.vscode/
 
+# 爬虫产生的数据和浏览器缓存
+JD_User_Data/
+data/
+
+# 针对特定爬虫脚本的忽略
 spiders-files/PDD_Crawler_Script.py
 spiders-files/PDD.py
+
+# Python 编译文件
+__pycache__/
+*.pyc
+*.pyo
+*.pyd
+.Python
+env/
+venv/
+.venv/
+pip-log.txt
+pip-delete-this-directory.txt
+.tox/
+.coverage
+.cache
+nosetests.xml
+coverage.xml
+*,cover
+.hypothesis/
