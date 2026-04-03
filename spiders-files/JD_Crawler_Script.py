@@ -3,7 +3,7 @@ import time
 import json
 import os
 import random
-from DrissionPage import ChromiumPage
+from DrissionPage import ChromiumPage, ChromiumOptions
 
 # ================= ⚙️ 配置区域 =================
 PRODUCT_NAME = "HuaWei P70 "  # 产品名称，用于标记数据来源
@@ -18,15 +18,77 @@ SHOP_URLS = [
     "https://item.jd.com/100183761500.html", # 华为移动京东自营专卖店
 ]
 
-SCROLL_TIMES = 5000 
+SCROLL_TIMES = 5000
 JSON_FILE = 'data/jd_HuaWei_P70.json'
+USER_DATA_DIR = './JD_User_Data'  # 用户数据目录，保持登录态
 # ===============================================
+
+
+def check_captcha(dp):
+    """检测京东人机验证弹窗"""
+    captcha_signs = [
+        'text:请完成验证', 'text:滑动验证', 'text:图形验证',
+        'text:安全验证', 'text:人机验证',
+        '#JDJRV-wrap',       # 京东验证码容器的常见ID
+        '.JDJRV-bigimg',     # 京东滑块验证
+    ]
+    for sign in captcha_signs:
+        try:
+            if dp.ele(sign, timeout=0.5):
+                return True
+        except:
+            pass
+    return False
+
+
+def human_scroll(dp):
+    """模拟真实人类的浏览节奏，随机混合多种滚动方式"""
+    action = random.choice(['space', 'scroll_small', 'scroll_medium'])
+
+    if action == 'space':
+        # 按空格键翻页，最自然的浏览行为
+        dp.actions.key_down('Space').key_up('Space')
+    elif action == 'scroll_small':
+        dp.scroll.down(random.randint(200, 400))
+    else:
+        dp.scroll.down(random.randint(400, 700))
+
+    # 模拟阅读时间 - 真人不会一直匀速滚动
+    time.sleep(random.uniform(1.5, 4.0))
+
+
+def save_incremental(all_data, json_file):
+    """增量保存 - 每次抓到新数据立即写入，防止数据丢失"""
+    os.makedirs(os.path.dirname(json_file), exist_ok=True)
+    with open(json_file, 'w', encoding='utf-8') as f:
+        json.dump(all_data, f, ensure_ascii=False, indent=4)
+
+
+def open_comment_popup(dp):
+    """尝试打开评论弹窗，返回是否成功"""
+    print("👀 尝试打开评论弹窗...")
+    try:
+        dp.scroll.down(500)
+        time.sleep(random.uniform(2, 4))
+
+        btn = dp.ele('text=全部评价') or dp.ele('text=商品评价')
+        if btn:
+            btn.click()
+            print("✅ 弹窗已打开")
+            return True
+        else:
+            input("❌ 自动打开失败，请手动点击后回车 >>")
+            return True
+    except:
+        input("❌ 发生异常，请手动点击打开后回车 >>")
+        return True
+
 
 def spider_jd_drain_mode():
     # 初始化
     all_data = []
     unique_ids = set()
-    
+
     # 读取旧数据（断点续传）
     if os.path.exists(JSON_FILE):
         try:
@@ -38,8 +100,14 @@ def spider_jd_drain_mode():
             print(f"📂 已加载历史数据: {len(all_data)} 条")
         except: pass
 
-    dp = ChromiumPage()
-    dp.listen.start('client.action') # 开启监听
+    # 【优化1】使用 User Data Dir 保持登录态
+    co = ChromiumOptions()
+    co.set_user_data_path(USER_DATA_DIR)
+    dp = ChromiumPage(co)
+
+    # 【优化2】精确监听京东评论API端点，减少噪声
+    dp.listen.start('api.m.jd.com/client.action')
+
     try:
         for url in SHOP_URLS:
             print(f"\n🚀 启动任务: {url}")
@@ -47,60 +115,48 @@ def spider_jd_drain_mode():
             time.sleep(5)
 
             # === 1. 打开弹窗 ===
-            print("👀 尝试打开评论弹窗...")
-            try:
-                # 先滚一点，让按钮加载出来
-                dp.scroll.down(500)
-                time.sleep(random.uniform(2, 4))
-                
-                # 点击按钮
-                btn = dp.ele('text=全部评价') or dp.ele('text=商品评价')
-                if btn:
-                    btn.click()
-                    print("✅ 弹窗已打开")
-                else:
-                    input("❌ 自动打开失败，请手动点击后回车 >>")
-            except:
-                input("❌ 发生异常，请手动点击打开后回车 >>")
-            
-            print("✅ 弹窗已打开！开始爬取...")
+            open_comment_popup(dp)
             print("💡 提示：运行过程中，随时按【Ctrl + C】可强制停止并保存数据！")
             time.sleep(5)
 
             # === 2. 循环抓取 ===
-            # 这里的 SCROLL_TIMES 只是一个大致的轮次限制
             no_data_rounds = 0
             try:
                 for i in range(SCROLL_TIMES):
                     print(f"\r🔄 第 {i+1} 轮 | 总数据: {len(all_data)} | ", end="")
 
-                    # --- [A] 强制滚动修复 (JS注入) ---
-                    # 尝试找到京东弹窗的那个滚动容器
-                    # 通常它的 class 是 'comment-con' 或者是在 dialog 里的 list
+                    # 【优化3】人机验证检测 + 暂停等待
+                    if check_captcha(dp):
+                        print(f"\n⚠️ 检测到人机验证！正在紧急保存数据...")
+                        save_incremental(all_data, JSON_FILE)
+                        print(f"💾 数据已保存 ({len(all_data)} 条)")
+                        input("🔐 请手动完成验证后，按回车继续 >>")
+                        # 验证通过后重新打开评论弹窗
+                        time.sleep(3)
+                        open_comment_popup(dp)
+                        time.sleep(5)
+                        no_data_rounds = 0
+                        continue
+
+                    # 【优化4】拟人化滚动（替代机械式滚动）
                     try:
-                        # 方案1：找到当前最后一条评论，让她进入视野
-                        last_item = dp.ele('.comment-item@@-1') # @@-1 表示取最后一个
+                        last_item = dp.ele('.comment-item@@-1')
                         if last_item:
-                            last_item.scroll.to_see() 
-                        else:
-                            # 方案2：如果没找到，尝试全局滚动（应对全屏模式）
-                            dp.scroll.down(800)
+                            last_item.scroll.to_see()
+                            time.sleep(random.uniform(0.5, 1.5))
+                        # 随机混合滚动方式
+                        human_scroll(dp)
                     except:
-                        pass # 滚不动就算了，你可以手动滚
+                        human_scroll(dp)
 
                     # 给一点时间让数据加载出来
-                    time.sleep(3) 
+                    time.sleep(2)
 
-                    # --- [B] 核心：队列清空模式 (Queue Draining) ---
-                    # 不再用 wait() 等一个，而是用 steps() 遍历所有积压的包
-                    # timeout=1 表示：处理完积压的包后，再多等1秒，如果没有新包就继续
+                    # --- 核心：队列清空模式 (Queue Draining) ---
                     packet_count = 0
-                    
-                    # 🔥 这行代码是解决"手滑太快漏数据"的关键 🔥
                     for packet in dp.listen.steps(timeout=1):
                         try:
                             raw_json = packet.response.body
-                            # 检查是否是评论包
                             if isinstance(raw_json, dict) and 'result' in raw_json and 'floors' in raw_json['result']:
                                 floors = raw_json['result']['floors']
                                 for floor in floors:
@@ -110,7 +166,7 @@ def spider_jd_drain_mode():
                                             if 'commentInfo' in item:
                                                 info = item['commentInfo']
                                                 cid = info.get('commentId')
-                                                
+
                                                 if cid not in unique_ids:
                                                     # 追评提取
                                                     append_review = ""
@@ -129,32 +185,39 @@ def spider_jd_drain_mode():
                                                         "votes": int(info.get('praiseCnt', 0)),
                                                         "images": [p.get('largePicURL', p.get('picURL')) for p in info.get('pictureInfoList', [])]
                                                     }
-                                                    
+
                                                     all_data.append(clean_item)
                                                     unique_ids.add(cid)
                                                     packet_count += 1
                         except:
                             pass
-                    
-                    # --- 状态显示 ---
+
+                    # --- 状态显示 + 【优化5】实时增量保存 ---
                     if packet_count > 0:
                         print(f"⚡ 爆发抓取! 处理了 {packet_count} 条新数据")
                         no_data_rounds = 0
+                        # 每抓到数据就立即保存，再也不怕页面刷新/崩溃
+                        save_incremental(all_data, JSON_FILE)
                     else:
                         print(f"等待中... {no_data_rounds}/10", end="")
                         no_data_rounds += 1
 
                     if no_data_rounds >= 10:
                         print(f"\n🛑 本店数据似乎已抓完 (连续10轮无新包)，正在切换下一家店铺...")
-                        break # 跳出当前 for i in range(SCROLL_TIMES) 循环
+                        break
 
-                    # === 4. 防封核心：动态休眠策略 (保持你的代码) ===
-                    if (i + 1) % random.randint(10,15) == 0:
-                        long_sleep = random.uniform(30, 60)
+                    # === 【优化7】自适应频率控制 ===
+                    if (i + 1) % random.randint(10, 15) == 0:
+                        long_sleep = random.uniform(45, 90)  # 拉长长休眠
                         print(f"\n☕ 触发长休息机制，暂停 {long_sleep:.1f} 秒...")
                         time.sleep(long_sleep)
+                    elif no_data_rounds >= 3:
+                        # 连续多轮没数据时，自动放慢节奏
+                        slow_sleep = random.uniform(15, 25)
+                        print(f" (放慢节奏 {slow_sleep:.1f}s)", end="")
+                        time.sleep(slow_sleep)
                     else:
-                        short_sleep = random.uniform(8, 15) # 保持你原本的节奏
+                        short_sleep = random.uniform(12, 20)  # 比之前稍慢，降低风控风险
                         time.sleep(short_sleep)
 
             except KeyboardInterrupt:
@@ -162,13 +225,11 @@ def spider_jd_drain_mode():
                 break
             except Exception as e:
                 print(f"\n❌ 当前店铺发生错误: {e}，跳过并尝试保存...")
+                save_incremental(all_data, JSON_FILE)
                 continue
 
-            # === 单个店铺爬完后，立即保存一次 ===
-            # 这样如果爬第2家店报错，第1家的数据也已经存下来了
-            if not os.path.exists('data'): os.makedirs('data')
-            with open(JSON_FILE, 'w', encoding='utf-8') as f:
-                json.dump(all_data, f, ensure_ascii=False, indent=4)
+            # === 单个店铺爬完后保存 ===
+            save_incremental(all_data, JSON_FILE)
             print(f"\n💾 [存档] 当前总数据量: {len(all_data)} 条")
 
             # === 店铺切换长休眠 ===
@@ -185,9 +246,7 @@ def spider_jd_drain_mode():
 
     # === 最终保存 ===
     if all_data:
-        if not os.path.exists('data'): os.makedirs('data')
-        with open(JSON_FILE, 'w', encoding='utf-8') as f:
-            json.dump(all_data, f, ensure_ascii=False, indent=4)
+        save_incremental(all_data, JSON_FILE)
         print(f"🎉 全部任务完成！总共保存 {len(all_data)} 条数据至: {JSON_FILE}")
     else:
         print("⚠️ 本次没有抓取到任何数据。")
