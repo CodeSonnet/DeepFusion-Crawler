@@ -42,16 +42,18 @@ def check_captcha(dp):
 
 
 def human_scroll(dp):
-    """模拟真实人类的浏览节奏，随机混合多种滚动方式"""
-    action = random.choice(['space', 'scroll_small', 'scroll_medium'])
+    """模拟真实人类的浏览节奏，滚动幅度要足够大以触发新数据包加载"""
+    action = random.choice(['space', 'scroll_medium', 'scroll_large'])
 
     if action == 'space':
-        # 按空格键翻页，最自然的浏览行为
-        dp.actions.key_down('Space').key_up('Space')
-    elif action == 'scroll_small':
-        dp.scroll.down(random.randint(200, 400))
+        # 连按几次空格，一次空格翻不了多少
+        for _ in range(random.randint(3, 6)):
+            dp.actions.key_down('Space').key_up('Space')
+            time.sleep(random.uniform(0.3, 0.8))
+    elif action == 'scroll_medium':
+        dp.scroll.down(random.randint(800, 1200))
     else:
-        dp.scroll.down(random.randint(400, 700))
+        dp.scroll.down(random.randint(1200, 2000))
 
     # 模拟阅读时间 - 真人不会一直匀速滚动
     time.sleep(random.uniform(1.5, 4.0))
@@ -138,19 +140,18 @@ def spider_jd_drain_mode():
                         no_data_rounds = 0
                         continue
 
-                    # 【优化4】拟人化滚动（替代机械式滚动）
+                    # 【优化4】拟人化滚动 — 幅度要大，确保翻过足够多评论触发新包
                     try:
                         last_item = dp.ele('.comment-item@@-1')
                         if last_item:
                             last_item.scroll.to_see()
-                            time.sleep(random.uniform(0.5, 1.5))
-                        # 随机混合滚动方式
-                        human_scroll(dp)
+                            time.sleep(random.uniform(0.3, 0.8))
                     except:
-                        human_scroll(dp)
+                        pass
+                    human_scroll(dp)
 
-                    # 给一点时间让数据加载出来
-                    time.sleep(2)
+                    # 等待数据加载
+                    time.sleep(random.uniform(1.0, 2.0))
 
                     # --- 核心：队列清空模式 (Queue Draining) ---
                     packet_count = 0
@@ -202,22 +203,19 @@ def spider_jd_drain_mode():
                         print(f"等待中... {no_data_rounds}/10", end="")
                         no_data_rounds += 1
 
-                    if no_data_rounds >= 10:
-                        print(f"\n🛑 本店数据似乎已抓完 (连续10轮无新包)，正在切换下一家店铺...")
-                        break
+                    # 不自动停止，持续跑；仅在空轮次较多时给提示
+                    if no_data_rounds == 20:
+                        print(f"\n⚠️ 已连续 {no_data_rounds} 轮无新数据，仍在继续...（按 Ctrl+C 可手动停止）")
+                    elif no_data_rounds > 0 and no_data_rounds % 50 == 0:
+                        print(f"\n⚠️ 已连续 {no_data_rounds} 轮无新数据，考虑手动切换或 Ctrl+C 停止")
 
-                    # === 【优化7】自适应频率控制 ===
-                    if (i + 1) % random.randint(10, 15) == 0:
-                        long_sleep = random.uniform(45, 90)  # 拉长长休眠
+                    # === 【优化7】频率控制：在效率和安全之间取平衡 ===
+                    if (i + 1) % random.randint(15, 25) == 0:
+                        long_sleep = random.uniform(15, 30)
                         print(f"\n☕ 触发长休息机制，暂停 {long_sleep:.1f} 秒...")
                         time.sleep(long_sleep)
-                    elif no_data_rounds >= 3:
-                        # 连续多轮没数据时，自动放慢节奏
-                        slow_sleep = random.uniform(15, 25)
-                        print(f" (放慢节奏 {slow_sleep:.1f}s)", end="")
-                        time.sleep(slow_sleep)
                     else:
-                        short_sleep = random.uniform(12, 20)  # 比之前稍慢，降低风控风险
+                        short_sleep = random.uniform(3, 6)
                         time.sleep(short_sleep)
 
             except KeyboardInterrupt:
