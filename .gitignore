@@ -1,13 +1,8 @@
 .idea/
 .vscode/
 
-# 爬虫产生的数据和浏览器缓存
-JD_User_Data/
-data/
-
-# 针对特定爬虫脚本的忽略
-spiders-files/PDD_Crawler_Script.py
-spiders-files/PDD.py
+# 浏览器用户数据目录（含登录 Cookie，不应入库）
+*_User_Data/
 
 # Python 编译文件
 __pycache__/
@@ -27,3 +22,4 @@ nosetests.xml
 coverage.xml
 *,cover
 .hypothesis/
+spiders-files/PDD.py
