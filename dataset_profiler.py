@@ -46,8 +46,8 @@ PRODUCT_NAME_MAP = {
     "pura70":           "Huawei P70",
     "xiaomi_15":        "Xiaomi 15 Pro",
     "小米15":           "Xiaomi 15 Pro",
-    "vivo_x300":        "vivo X300 Pro",
-    "vivox300":         "vivo X300 Pro",
+    "vivo_x300":        "VIVO X300 Pro",
+    "vivox300":         "VIVO X300 Pro",
     "galaxy_s26":       "Samsung Galaxy S26 Ultra",
     "三星":             "Samsung Galaxy S26 Ultra",
     "samsung":          "Samsung Galaxy S26 Ultra",
@@ -71,7 +71,7 @@ ALL_PRODUCTS = [
     "iPhone 17 Pro",
     "Huawei P70",
     "Xiaomi 15 Pro",
-    "vivo X300 Pro",
+    "VIVO X300 Pro",
     "Samsung Galaxy S26 Ultra",
     "OPPO Find X9 Pro",
     "OnePlus 14",
@@ -371,8 +371,8 @@ class DatasetProfiler:
 
     def get_merged_stats(self, platform: str, product: str) -> dict | None:
         """
-        获取指定平台-产品的合并统计数据。
-        当同平台同产品有多个文件时（如拼多多华为P70），自动合并。
+        获取指定平台-产品的统计数据。
+        当同平台同产品有多个文件时自动合并（通常每个产品只有一个文件）。
         返回 None 表示无数据（待爬）。
         """
         fps = self.get_profiles(platform, product)
@@ -900,7 +900,7 @@ def generate_report(profiler: DatasetProfiler) -> str:
 
     ln(f"1. **数据清洗**：数据集中有 {total_default:,} 条默认/无意义评论（占比 {default_rate:.1%}），训练前必须过滤。")
     ln(f"2. **跨平台配对**：{full_pair_count} 款产品有三平台数据，{partial_pair_count} 款仅双平台，对比学习的正样本构建以三平台产品为主。")
-    ln(f"3. **产品名称统一**：拼多多的 `product_name` 字段为商品ID格式（如\"商品904664626870\"），需要在预处理阶段映射为标准名。")
+    ln(f"3. **产品名称统一**：拼多多的 `product_name` 字段为商品ID格式（如\"商品904664626870\"），需要在预处理阶段统一映射为标准产品名称。数据文件已完成去重合并与命名规范化。")
 
     # 检查评分覆盖
     no_score_files = [fp for fp in profiler.file_profiles if sum(fp.score_distribution[i] for i in range(1, 6)) == 0]
