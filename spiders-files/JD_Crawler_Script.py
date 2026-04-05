@@ -1,25 +1,21 @@
-# -*- coding: utf-8 -*-
 import time
 import json
 import os
 import random
+import msvcrt
 from DrissionPage import ChromiumPage, ChromiumOptions
 
 # ================= ⚙️ 配置区域 =================
-PRODUCT_NAME = "HuaWei P70 "  # 产品名称，用于标记数据来源
+PRODUCT_NAME = "OPPO Find X9 Pro "  # 产品名称，用于标记数据来源
 SHOP_URLS = [
-    "https://item.jd.com/100106087181.html", #华为京东自营店
-    "https://item.jd.com/10101253672823.html",# 京联通达旗舰店
-    "https://item.jd.com/100160993868.html",   # 中国电信京东自营旗舰店
-    "https://item.jd.com/10185204717301.html",  # 福鑫备库小店
-    "https://item.jd.com/100169786473.html",   # 京东手机直营旗舰店
-    "https://item.jd.com/10100794886722.html", # 领凡手机旗舰店
-    "https://item.jd.com/10106555235225.html",# 中企手机旗舰店
-    "https://item.jd.com/100183761500.html", # 华为移动京东自营专卖店
+    "https://item.jd.com/100210407515.html?pcdk=OVilZt2LNvFZy5qoOjXdMm4sJOJR_mqNKygKlLC3Xl6d-Ks8qkds3s_dhoPblXSH.3z6a.aI3x&spmTag=YTAyMTkuYjAwMjM1Ni5jMDAwMDQ2ODkuc2VhcmNoX2NvbmZpcm0lMkNhMDI0MC5iMDAyNDkzLmMwMDAwNDAyNy4xJTIzc2t1X2NhcmQ",
+    #"https://item.jd.com/10203573823021.html?pcdk=OVilZt2LNvFZy5qoOjXdMotZbMksMxmvV2pT5QYlweQHwtKCfgnwo13Yg_0GQ1fx.3z6a.aI3x&spmTag=YTAyMTkuYjAwMjM1Ni5jMDAwMDQ2ODkuc2VhcmNoX2NvbmZpcm0lMkNhMDI0MC5iMDAyNDkzLmMwMDAwNDAyNy4zJTIzc2t1X2NhcmQ",
+    #"https://item.jd.com/100211467673.html?pcdk=OVilZt2LNvFZy5qoOjXdMm4sJOJR_mqNKygKlLC3Xl6-olGoJl3qJ8NDi-oEjBy3.3z6a.aI3x&spmTag=YTAyMTkuYjAwMjM1Ni5jMDAwMDQ2ODkuc2VhcmNoX2NvbmZpcm0lMkNhMDI0MC5iMDAyNDkzLmMwMDAwNDAyNy40JTIzc2t1X2NhcmQ",
+    #"https://item.jd.com/10184249923683.html?pcdk=OVilZt2LNvFZy5qoOjXdMlpwWRYjrpDEswU-1eODn8MT_YyrlVuIoHWQQlErySCQ.3z6a.aI3x&spmTag=YTAyMTkuYjAwMjM1Ni5jMDAwMDQ2ODkuc2VhcmNoX2NvbmZpcm0lMkNhMDI0MC5iMDAyNDkzLmMwMDAwNDAyNy41JTIzc2t1X2NhcmQ",
 ]
 
 SCROLL_TIMES = 5000
-JSON_FILE = 'data/jd_HuaWei_P70.json'
+JSON_FILE = 'data/JD/jd_OPPO_Find_X9_Pro.json'
 USER_DATA_DIR = './JD_User_Data'  # 用户数据目录，保持登录态
 # ===============================================
 
@@ -107,11 +103,19 @@ def spider_jd_drain_mode():
     co.set_user_data_path(USER_DATA_DIR)
     dp = ChromiumPage(co)
 
-    # 【优化2】精确监听京东评论API端点，减少噪声
     dp.listen.start('api.m.jd.com/client.action')
+    is_paused = False
+
+    print("\n" + "="*50)
+    print("🎮 实时控制指南:")
+    print("  [N] 键: 跳过当前商品, 爬下一个")
+    print("  [P] 键: 暂停/继续切换")
+    print("  [Ctrl+C]: 强制退出并保存")
+    print("="*50 + "\n")
 
     try:
         for url in SHOP_URLS:
+            if not url: continue
             print(f"\n🚀 启动任务: {url}")
             dp.get(url)
             time.sleep(5)
@@ -125,7 +129,25 @@ def spider_jd_drain_mode():
             no_data_rounds = 0
             try:
                 for i in range(SCROLL_TIMES):
-                    print(f"\r🔄 第 {i+1} 轮 | 总数据: {len(all_data)} | ", end="")
+                    # --- 1. 实时交互控制 ---
+                    if msvcrt.kbhit():
+                        key = msvcrt.getch().decode('utf-8', errors='ignore').lower()
+                        if key == 'n':
+                            print("\n⏭️ 收到跳过指令，准备切换下一个商品...")
+                            break
+                        elif key == 'p':
+                            is_paused = not is_paused
+                            print(f"\n{'⏸️ 暂停' if is_paused else '▶️ 继续'} 程序运行...")
+
+                    while is_paused:
+                        if msvcrt.kbhit():
+                            key = msvcrt.getch().decode('utf-8', errors='ignore').lower()
+                            if key == 'p':
+                                is_paused = False
+                                print("\n▶️ 继续执行...")
+                        time.sleep(0.5)
+
+                    print(f"\r🔄 轮次: {i+1} | 总库: {len(all_data)} | 无响应轮数: {no_data_rounds} ", end="")
 
                     # 【优化3】人机验证检测 + 暂停等待
                     if check_captcha(dp):
@@ -200,7 +222,7 @@ def spider_jd_drain_mode():
                         # 每抓到数据就立即保存，再也不怕页面刷新/崩溃
                         save_incremental(all_data, JSON_FILE)
                     else:
-                        print(f"等待中... {no_data_rounds}/10", end="")
+                        print(f"中... {no_data_rounds}/10", end="")
                         no_data_rounds += 1
 
                     # 不自动停止，持续跑；仅在空轮次较多时给提示
