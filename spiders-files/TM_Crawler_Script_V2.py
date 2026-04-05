@@ -72,12 +72,6 @@ TASKS = [
         "output_file": "data/TaoBao_V2/taobao_VIVO_X300_Pro.json",
     },
     {
-        "product_name": "Samsung Galaxy S26 Ultra",
-        "max_shops": 30,
-        "urls": [],
-        "output_file": "data/TaoBao_V2/taobao_Samsung_Galaxy_S26_Ultra.json",
-    },
-    {
         "product_name": "OPPO Find X9 Pro",
         "max_shops": 30,
         "urls": [],

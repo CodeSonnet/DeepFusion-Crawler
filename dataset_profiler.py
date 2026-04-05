@@ -48,9 +48,6 @@ PRODUCT_NAME_MAP = {
     "小米15":           "Xiaomi 15 Pro",
     "vivo_x300":        "VIVO X300 Pro",
     "vivox300":         "VIVO X300 Pro",
-    "galaxy_s26":       "Samsung Galaxy S26 Ultra",
-    "三星":             "Samsung Galaxy S26 Ultra",
-    "samsung":          "Samsung Galaxy S26 Ultra",
     "oppo":             "OPPO Find X9 Pro",
     "oppofind":         "OPPO Find X9 Pro",
     "oppo_find":        "OPPO Find X9 Pro",
@@ -72,7 +69,6 @@ ALL_PRODUCTS = [
     "Huawei P70",
     "Xiaomi 15 Pro",
     "VIVO X300 Pro",
-    "Samsung Galaxy S26 Ultra",
     "OPPO Find X9 Pro",
     "OnePlus 14",
 ]

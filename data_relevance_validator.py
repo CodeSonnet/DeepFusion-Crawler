@@ -55,9 +55,6 @@ PRODUCT_NAME_MAP = {
     "小米15":           "Xiaomi 15 Pro",
     "vivo_x300":        "VIVO X300 Pro",
     "vivox300":         "VIVO X300 Pro",
-    "galaxy_s26":       "Samsung Galaxy S26 Ultra",
-    "三星":             "Samsung Galaxy S26 Ultra",
-    "samsung":          "Samsung Galaxy S26 Ultra",
     "oppo":             "OPPO Find X9 Pro",
     "oppofind":         "OPPO Find X9 Pro",
     "oppo_find":        "OPPO Find X9 Pro",
@@ -79,7 +76,6 @@ ALL_PRODUCTS = [
     "Huawei P70",
     "Xiaomi 15 Pro",
     "VIVO X300 Pro",
-    "Samsung Galaxy S26 Ultra",
     "OPPO Find X9 Pro",
     "OnePlus 14",
 ]
@@ -123,14 +119,6 @@ PRODUCT_FINGERPRINTS = {
         "sku_color_keywords": ["旷野棕", "简单白", "纯粹黑", "自在蓝",
                                "摄影师套装"],
         "brand_id":       "vivo",
-    },
-    "Samsung Galaxy S26 Ultra": {
-        "brand_keywords": ["三星", "samsung", "galaxy", "one ui"],
-        "model_keywords": ["s26", "s 26", "galaxy s26"],
-        "sku_color_keywords": ["钛灰", "钛黑", "暮河银", "冷川蓝", "钛辉银",
-                               "钛影黑", "钛银蓝", "旷宇黑", "浅云蓝", "映雪白",
-                               "幽夜紫", "防窥"],
-        "brand_id":       "samsung",
     },
     "OPPO Find X9 Pro": {
         "brand_keywords": ["oppo"],
