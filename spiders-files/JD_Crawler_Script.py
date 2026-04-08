@@ -6,16 +6,24 @@ import msvcrt
 from DrissionPage import ChromiumPage, ChromiumOptions
 
 # ================= ⚙️ 配置区域 =================
-PRODUCT_NAME = "OPPO Find X9 Pro "  # 产品名称，用于标记数据来源
+PRODUCT_NAME = "Redmi K90 pro max "  # 产品名称，用于标记数据来源
 SHOP_URLS = [
-    "https://item.jd.com/100210407515.html?pcdk=OVilZt2LNvFZy5qoOjXdMm4sJOJR_mqNKygKlLC3Xl6d-Ks8qkds3s_dhoPblXSH.3z6a.aI3x&spmTag=YTAyMTkuYjAwMjM1Ni5jMDAwMDQ2ODkuc2VhcmNoX2NvbmZpcm0lMkNhMDI0MC5iMDAyNDkzLmMwMDAwNDAyNy4xJTIzc2t1X2NhcmQ",
+    #oppo
+    #没爬完"https://item.jd.com/100210407515.html?pcdk=OVilZt2LNvFZy5qoOjXdMm4sJOJR_mqNKygKlLC3Xl6d-Ks8qkds3s_dhoPblXSH.3z6a.aI3x&spmTag=YTAyMTkuYjAwMjM1Ni5jMDAwMDQ2ODkuc2VhcmNoX2NvbmZpcm0lMkNhMDI0MC5iMDAyNDkzLmMwMDAwNDAyNy4xJTIzc2t1X2NhcmQ",
     #"https://item.jd.com/10203573823021.html?pcdk=OVilZt2LNvFZy5qoOjXdMotZbMksMxmvV2pT5QYlweQHwtKCfgnwo13Yg_0GQ1fx.3z6a.aI3x&spmTag=YTAyMTkuYjAwMjM1Ni5jMDAwMDQ2ODkuc2VhcmNoX2NvbmZpcm0lMkNhMDI0MC5iMDAyNDkzLmMwMDAwNDAyNy4zJTIzc2t1X2NhcmQ",
     #"https://item.jd.com/100211467673.html?pcdk=OVilZt2LNvFZy5qoOjXdMm4sJOJR_mqNKygKlLC3Xl6-olGoJl3qJ8NDi-oEjBy3.3z6a.aI3x&spmTag=YTAyMTkuYjAwMjM1Ni5jMDAwMDQ2ODkuc2VhcmNoX2NvbmZpcm0lMkNhMDI0MC5iMDAyNDkzLmMwMDAwNDAyNy40JTIzc2t1X2NhcmQ",
     #"https://item.jd.com/10184249923683.html?pcdk=OVilZt2LNvFZy5qoOjXdMlpwWRYjrpDEswU-1eODn8MT_YyrlVuIoHWQQlErySCQ.3z6a.aI3x&spmTag=YTAyMTkuYjAwMjM1Ni5jMDAwMDQ2ODkuc2VhcmNoX2NvbmZpcm0lMkNhMDI0MC5iMDAyNDkzLmMwMDAwNDAyNy41JTIzc2t1X2NhcmQ",
+   #红米
+    "https://item.jd.com/100287758142.html?pcdk=V6-rBSwu8FP16K3G3Zhn1ITgSoAbYytl6He7e5JHCCzSP2Y1Qar-rFOiPzmXYaKX.3z6a.aI3x&spmTag=YTAyMTkuYjAwMjM1Ni5jMDAwMDQ2ODkuc2VhcmNoX2NvbmZpcm0lMkNhMDI0MC5iMDAyNDkzLmMwMDAwNDAyNy4xJTIzc2t1X2NhcmQ",
+    "",
+    "",
+    "",
+    "",
+    "",
 ]
 
 SCROLL_TIMES = 5000
-JSON_FILE = 'data/JD/jd_OPPO_Find_X9_Pro.json'
+JSON_FILE = 'data/JD/jd_Redmi_K90_pro_max.json'
 USER_DATA_DIR = './JD_User_Data'  # 用户数据目录，保持登录态
 # ===============================================
 
