@@ -1,7 +1,7 @@
 # 🔍 跨平台电商评论数据有效性验证报告
 
-> 生成时间：2026-04-05 20:00:05
-> 数据目录：`D:\develop\DeepFusion-Crawler\data`
+> 生成时间：2026-04-07 11:12:14
+> 数据目录：`d:\develop\DeepFusion-Crawler\data`
 
 ## 一、验证总览
 
@@ -68,12 +68,12 @@
 | 京东 | `jd_iphone17_pro.json` | iPhone 17 Pro | 1 | ✅ 一致 |
 | 京东 | `jd_vivo_X300_Pro.json` | VIVO X300 Pro | 1 | ✅ 一致 |
 | 京东 | `jd_xiaomi_15_pro.json` | Xiaomi 15 Pro | 1 | ✅ 一致 |
-| 淘宝/天猫 | `taobao_Huawei_P70.json` | Huawei P70 | 1 | ✅ 一致 |
+| 淘宝/天猫 | `taobao_HuaWei_P70.json` | Huawei P70 | 1 | ✅ 一致 |
 | 淘宝/天猫 | `taobao_OPPO_Find_X9_Pro.json` | OPPO Find X9 Pro | 1 | ✅ 一致 |
 | 淘宝/天猫 | `taobao_OnePlus_14.json` | OnePlus 14 | 1 | ✅ 一致 |
-| 淘宝/天猫 | `taobao_VIVO_X300_Pro.json` | VIVO X300 Pro | 2 | ⚠️ 存在多个值 |
-| 淘宝/天猫 | `taobao_Xiaomi_15_Pro.json` | Xiaomi 15 Pro | 1 | ✅ 一致 |
-| 淘宝/天猫 | `taobao_iPhone17_Pro.json` | iPhone 17 Pro | 1 | ✅ 一致 |
+| 淘宝/天猫 | `taobao_iphone17_pro.json` | iPhone 17 Pro | 1 | ✅ 一致 |
+| 淘宝/天猫 | `taobao_vivo_X300_Pro.json` | VIVO X300 Pro | 2 | ⚠️ 存在多个值 |
+| 淘宝/天猫 | `taobao_xiaomi_15_pro.json` | Xiaomi 15 Pro | 1 | ✅ 一致 |
 | 拼多多 | `pdd_Huawei_P70.json` | Huawei P70 | 13 | 🚨 高度分散（13个值） |
 | 拼多多 | `pdd_OPPO_Find_X9_Pro.json` | OPPO Find X9 Pro | 19 | 🚨 高度分散（19个值） |
 | 拼多多 | `pdd_OnePlus_14.json` | OnePlus 14 | 6 | 🚨 高度分散（6个值） |
@@ -83,7 +83,7 @@
 
 ### 3.1 product_name 不一致文件详情
 
-**淘宝/天猫 - `taobao_VIVO_X300_Pro.json`**（目标：VIVO X300 Pro）
+**淘宝/天猫 - `taobao_vivo_X300_Pro.json`**（目标：VIVO X300 Pro）
 
 | product_name 值 | 评论数 | 占比 |
 |:---|---:|---:|
@@ -239,13 +239,13 @@
 
 > 以下列出各文件中置信度最低的评论样例，帮助人工核实验证逻辑的准确性。
 
-### 淘宝/天猫 - Huawei P70（`taobao_Huawei_P70.json`）
+### 淘宝/天猫 - Huawei P70（`taobao_HuaWei_P70.json`）
 
 | # | 置信度 | SKU（截取） | 评论内容（截取） | 疑似原因 |
 |---:|---:|:---|:---|:---|
 | 1 | 0.30 | 未知 | 该用户未及时主动评价，系统默认评价 | SKU结构异常，非标准手机SKU格式 (sku=未知) |
 
-### 淘宝/天猫 - iPhone 17 Pro（`taobao_iPhone17_Pro.json`）
+### 淘宝/天猫 - iPhone 17 Pro（`taobao_iphone17_pro.json`）
 
 | # | 置信度 | SKU（截取） | 评论内容（截取） | 疑似原因 |
 |---:|---:|:---|:---|:---|
@@ -264,8 +264,8 @@
 
 | 优先级 | 平台 | 文件 | 产品 | 可疑率 | 品牌冲突数 | 建议操作 |
 |---:|:---|:---|:---|---:|---:|:---|
-| 1 | 淘宝/天猫 | `taobao_Huawei_P70.json` | Huawei P70 | 0.4% | 0 | 🔸 少量可疑，可忽略 |
-| 2 | 淘宝/天猫 | `taobao_iPhone17_Pro.json` | iPhone 17 Pro | 0.2% | 0 | 🔸 少量可疑，可忽略 |
+| 1 | 淘宝/天猫 | `taobao_HuaWei_P70.json` | Huawei P70 | 0.4% | 0 | 🔸 少量可疑，可忽略 |
+| 2 | 淘宝/天猫 | `taobao_iphone17_pro.json` | iPhone 17 Pro | 0.2% | 0 | 🔸 少量可疑，可忽略 |
 | 3 | 京东 | `jd_HuaWei_P70.json` | Huawei P70 | 0.0% | 0 | ✅ 无需清洗 |
 | 4 | 京东 | `jd_OPPO_Find_X9_Pro.json` | OPPO Find X9 Pro | 0.0% | 0 | ✅ 无需清洗 |
 | 5 | 京东 | `jd_iphone17_pro.json` | iPhone 17 Pro | 0.0% | 0 | ✅ 无需清洗 |
@@ -273,8 +273,8 @@
 | 7 | 京东 | `jd_xiaomi_15_pro.json` | Xiaomi 15 Pro | 0.0% | 0 | ✅ 无需清洗 |
 | 8 | 淘宝/天猫 | `taobao_OPPO_Find_X9_Pro.json` | OPPO Find X9 Pro | 0.0% | 0 | ✅ 无需清洗 |
 | 9 | 淘宝/天猫 | `taobao_OnePlus_14.json` | OnePlus 14 | 0.0% | 0 | ✅ 无需清洗 |
-| 10 | 淘宝/天猫 | `taobao_VIVO_X300_Pro.json` | VIVO X300 Pro | 0.0% | 0 | ✅ 无需清洗 |
-| 11 | 淘宝/天猫 | `taobao_Xiaomi_15_Pro.json` | Xiaomi 15 Pro | 0.0% | 0 | ✅ 无需清洗 |
+| 10 | 淘宝/天猫 | `taobao_vivo_X300_Pro.json` | VIVO X300 Pro | 0.0% | 0 | ✅ 无需清洗 |
+| 11 | 淘宝/天猫 | `taobao_xiaomi_15_pro.json` | Xiaomi 15 Pro | 0.0% | 0 | ✅ 无需清洗 |
 | 12 | 拼多多 | `pdd_Huawei_P70.json` | Huawei P70 | 0.0% | 0 | ✅ 无需清洗 |
 | 13 | 拼多多 | `pdd_OPPO_Find_X9_Pro.json` | OPPO Find X9 Pro | 0.0% | 0 | ✅ 无需清洗 |
 | 14 | 拼多多 | `pdd_OnePlus_14.json` | OnePlus 14 | 0.0% | 0 | ✅ 无需清洗 |

@@ -1,7 +1,7 @@
 # 📊 跨平台电商评论数据集特征报告
 
-> 生成时间：2026-04-05 20:00:06
-> 数据目录：`D:\develop\DeepFusion-Crawler\data`
+> 生成时间：2026-04-07 11:14:25
+> 数据目录：`d:\develop\DeepFusion-Crawler\data`
 
 ## 一、数据集总览
 
@@ -91,9 +91,9 @@
 | Huawei P70 | 100% | 100% | 100% | 100% | 0% | 37% | 53% | 62% |
 | OPPO Find X9 Pro | 100% | 100% | 100% | 100% | 0% | 29% | 72% | 13% |
 | OnePlus 14 | 100% | 100% | 100% | 100% | 0% | 28% | 72% | 11% |
+| iPhone 17 Pro | 100% | 100% | 100% | 100% | 0% | 31% | 81% | 32% |
 | VIVO X300 Pro | 100% | 100% | 100% | 100% | 0% | 33% | 82% | 73% |
 | Xiaomi 15 Pro | 100% | 100% | 100% | 100% | 0% | 27% | 30% | 38% |
-| iPhone 17 Pro | 100% | 100% | 100% | 100% | 0% | 31% | 81% | 32% |
 
 **拼多多**
 
@@ -191,12 +191,12 @@
 | 3 | 京东 | iPhone 17 Pro | `jd_iphone17_pro.json` | 2.0 MB | 3,060 | 3,005 |
 | 4 | 京东 | VIVO X300 Pro | `jd_vivo_X300_Pro.json` | 489 KB | 581 | 581 |
 | 5 | 京东 | Xiaomi 15 Pro | `jd_xiaomi_15_pro.json` | 993 KB | 1,249 | 1,222 |
-| 6 | 淘宝/天猫 | Huawei P70 | `taobao_Huawei_P70.json` | 209 KB | 265 | 239 |
+| 6 | 淘宝/天猫 | Huawei P70 | `taobao_HuaWei_P70.json` | 209 KB | 265 | 239 |
 | 7 | 淘宝/天猫 | OPPO Find X9 Pro | `taobao_OPPO_Find_X9_Pro.json` | 2.1 MB | 2,622 | 2,559 |
 | 8 | 淘宝/天猫 | OnePlus 14 | `taobao_OnePlus_14.json` | 3.1 MB | 4,095 | 4,023 |
-| 9 | 淘宝/天猫 | VIVO X300 Pro | `taobao_VIVO_X300_Pro.json` | 4.9 MB | 5,238 | 5,144 |
-| 10 | 淘宝/天猫 | Xiaomi 15 Pro | `taobao_Xiaomi_15_Pro.json` | 2.0 MB | 2,810 | 2,444 |
-| 11 | 淘宝/天猫 | iPhone 17 Pro | `taobao_iPhone17_Pro.json` | 973 KB | 1,214 | 1,196 |
+| 9 | 淘宝/天猫 | iPhone 17 Pro | `taobao_iphone17_pro.json` | 973 KB | 1,214 | 1,196 |
+| 10 | 淘宝/天猫 | VIVO X300 Pro | `taobao_vivo_X300_Pro.json` | 4.9 MB | 5,238 | 5,144 |
+| 11 | 淘宝/天猫 | Xiaomi 15 Pro | `taobao_xiaomi_15_pro.json` | 2.0 MB | 2,810 | 2,444 |
 | 12 | 拼多多 | Huawei P70 | `pdd_Huawei_P70.json` | 1.3 MB | 1,739 | 1,731 |
 | 13 | 拼多多 | OPPO Find X9 Pro | `pdd_OPPO_Find_X9_Pro.json` | 4.9 MB | 6,014 | 6,013 |
 | 14 | 拼多多 | OnePlus 14 | `pdd_OnePlus_14.json` | 421 KB | 525 | 525 |
