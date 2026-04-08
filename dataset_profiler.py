@@ -54,6 +54,23 @@ PRODUCT_NAME_MAP = {
     "oneplus":          "OnePlus 14",
     "一加":             "OnePlus 14",
     "一加14":           "OnePlus 14",
+    "redmi_k90":        "Redmi K90 Pro Max",
+    "redmi-k90":        "Redmi K90 Pro Max",
+    "redmik90":         "Redmi K90 Pro Max",
+    "红米k90":          "Redmi K90 Pro Max",
+    "iqoo_15":          "iQOO 15",
+    "iqoo15":           "iQOO 15",
+    "iqoo":             "iQOO 15",
+    "magic7":           "Honor Magic7 Pro",
+    "magic_7":          "Honor Magic7 Pro",
+    "荣耀magic7":       "Honor Magic7 Pro",
+    "荣耀magic":        "Honor Magic7 Pro",
+    "honor":            "Honor Magic7 Pro",
+    "realme":           "realme GT7 Pro",
+    "realme_gt7":       "realme GT7 Pro",
+    "realmegt7":        "realme GT7 Pro",
+    "真我gt7":          "realme GT7 Pro",
+    "gt7":              "realme GT7 Pro",
 }
 
 # 平台目录名 -> 标准平台名
@@ -63,7 +80,7 @@ PLATFORM_DIR_MAP = {
     "Pinduoduo": "拼多多",
 }
 
-# 我们研究的 7 款产品（按品牌排序）
+# 我们研究的 10 款产品（按品牌排序）
 ALL_PRODUCTS = [
     "iPhone 17 Pro",
     "Huawei P70",
@@ -71,6 +88,10 @@ ALL_PRODUCTS = [
     "VIVO X300 Pro",
     "OPPO Find X9 Pro",
     "OnePlus 14",
+    "Redmi K90 Pro Max",
+    "iQOO 15",
+    "Honor Magic7 Pro",
+    "realme GT7 Pro",
 ]
 
 # 所有平台列表

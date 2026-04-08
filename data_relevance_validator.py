@@ -61,6 +61,23 @@ PRODUCT_NAME_MAP = {
     "oneplus":          "OnePlus 14",
     "一加":             "OnePlus 14",
     "一加14":           "OnePlus 14",
+    "redmi_k90":        "Redmi K90 Pro Max",
+    "redmi-k90":        "Redmi K90 Pro Max",
+    "redmik90":         "Redmi K90 Pro Max",
+    "红米k90":          "Redmi K90 Pro Max",
+    "iqoo_15":          "iQOO 15",
+    "iqoo15":           "iQOO 15",
+    "iqoo":             "iQOO 15",
+    "magic7":           "Honor Magic7 Pro",
+    "magic_7":          "Honor Magic7 Pro",
+    "荣耀magic7":       "Honor Magic7 Pro",
+    "荣耀magic":        "Honor Magic7 Pro",
+    "honor":            "Honor Magic7 Pro",
+    "realme":           "realme GT7 Pro",
+    "realme_gt7":       "realme GT7 Pro",
+    "realmegt7":        "realme GT7 Pro",
+    "真我gt7":          "realme GT7 Pro",
+    "gt7":              "realme GT7 Pro",
 }
 
 # 平台目录名 -> 标准平台名
@@ -78,6 +95,10 @@ ALL_PRODUCTS = [
     "VIVO X300 Pro",
     "OPPO Find X9 Pro",
     "OnePlus 14",
+    "Redmi K90 Pro Max",
+    "iQOO 15",
+    "Honor Magic7 Pro",
+    "realme GT7 Pro",
 ]
 
 ALL_PLATFORMS = ["京东", "淘宝/天猫", "拼多多"]
@@ -132,6 +153,30 @@ PRODUCT_FINGERPRINTS = {
         "model_keywords": ["一加14", "oneplus 14", "oneplus14"],
         "sku_color_keywords": ["原色沙丘", "雾光紫", "绝对黑"],
         "brand_id":       "oneplus",
+    },
+    "Redmi K90 Pro Max": {
+        "brand_keywords": ["红米", "redmi", "小米", "xiaomi"],
+        "model_keywords": ["k90", "k90 pro", "k90pro", "红米k90"],
+        "sku_color_keywords": [],
+        "brand_id":       "xiaomi",
+    },
+    "iQOO 15": {
+        "brand_keywords": ["iqoo", "vivo"],
+        "model_keywords": ["iqoo15", "iqoo 15"],
+        "sku_color_keywords": [],
+        "brand_id":       "iqoo",
+    },
+    "Honor Magic7 Pro": {
+        "brand_keywords": ["荣耀", "honor"],
+        "model_keywords": ["magic7", "magic 7", "magic7 pro", "magic7pro"],
+        "sku_color_keywords": [],
+        "brand_id":       "honor",
+    },
+    "realme GT7 Pro": {
+        "brand_keywords": ["realme", "真我"],
+        "model_keywords": ["gt7", "gt 7", "gt7 pro", "gt7pro"],
+        "sku_color_keywords": [],
+        "brand_id":       "realme",
     },
 }
 
