@@ -23,3 +23,5 @@ coverage.xml
 *,cover
 .hypothesis/
 spiders-files/PDD.py
+spiders-files/PDD_Crawler_Script copy.py
+.gitignore
