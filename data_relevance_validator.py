@@ -58,9 +58,10 @@ PRODUCT_NAME_MAP = {
     "oppo":             "OPPO Find X9 Pro",
     "oppofind":         "OPPO Find X9 Pro",
     "oppo_find":        "OPPO Find X9 Pro",
-    "oneplus":          "OnePlus 14",
-    "一加":             "OnePlus 14",
-    "一加14":           "OnePlus 14",
+    "一加ace":          "OnePlus Ace 6T",
+    "oneplus_ace":      "OnePlus Ace 6T",
+    "一加ace6t":        "OnePlus Ace 6T",
+    "ace6t":            "OnePlus Ace 6T",
     "redmi_k90":        "Redmi K90 Pro Max",
     "redmi-k90":        "Redmi K90 Pro Max",
     "redmik90":         "Redmi K90 Pro Max",
@@ -94,7 +95,7 @@ ALL_PRODUCTS = [
     "Xiaomi 15 Pro",
     "VIVO X300 Pro",
     "OPPO Find X9 Pro",
-    "OnePlus 14",
+    "OnePlus Ace 6T",
     "Redmi K90 Pro Max",
     "iQOO 15",
     "Honor Magic7 Pro",
@@ -148,10 +149,10 @@ PRODUCT_FINGERPRINTS = {
                                "雾黑"],
         "brand_id":       "oppo",
     },
-    "OnePlus 14": {
+    "OnePlus Ace 6T": {
         "brand_keywords": ["一加", "oneplus", "1+"],
-        "model_keywords": ["一加14", "oneplus 14", "oneplus14"],
-        "sku_color_keywords": ["原色沙丘", "雾光紫", "绝对黑"],
+        "model_keywords": ["ace6t", "ace 6t", "一加ace", "oneplus ace"],
+        "sku_color_keywords": [],
         "brand_id":       "oneplus",
     },
     "Redmi K90 Pro Max": {
@@ -535,6 +536,10 @@ class DataRelevanceValidator:
                     continue
                 filepath = os.path.join(platform_path, filename)
                 product_name = normalize_product_name(filename)
+
+                if product_name not in ALL_PRODUCTS:
+                    print(f"  [跳过] {filename} (非目标产品: {product_name})")
+                    continue
 
                 print(f"  验证 [{platform_name}] {filename} -> {product_name}")
                 profile = FileRelevanceProfile(filepath, platform_name, product_name)
