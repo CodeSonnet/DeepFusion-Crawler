@@ -1,6 +1,6 @@
 # 📊 跨平台电商评论数据集特征报告
 
-> 生成时间：2026-04-10 22:08:50
+> 生成时间：2026-04-10 23:19:20
 > 数据目录：`d:\develop\DeepFusion-Crawler\data`
 
 ## 一、数据集总览
@@ -107,10 +107,10 @@
 | OPPO Find X9 Pro | 100% | 100% | 100% | 100% | 0% | 29% | 72% | 13% |
 | OnePlus Ace 6T | 100% | 100% | 100% | 100% | 0% | 44% | 72% | 29% |
 | Redmi K90 Pro Max | 100% | 100% | 100% | 100% | 0% | 30% | 78% | 21% |
-| iQOO 15 | 100% | 100% | 100% | 100% | 0% | 27% | 80% | 85% |
-| iPhone 17 Pro | 100% | 100% | 100% | 100% | 0% | 31% | 81% | 32% |
-| VIVO X300 Pro | 100% | 100% | 100% | 100% | 0% | 33% | 82% | 73% |
 | Xiaomi 15 Pro | 100% | 100% | 100% | 100% | 0% | 27% | 30% | 38% |
+| iPhone 17 Pro | 100% | 100% | 100% | 100% | 0% | 31% | 81% | 32% |
+| iQOO 15 | 100% | 100% | 100% | 100% | 0% | 27% | 80% | 85% |
+| VIVO X300 Pro | 100% | 100% | 100% | 100% | 0% | 33% | 82% | 73% |
 | realme GT7 Pro | 100% | 100% | 100% | 100% | 0% | 35% | 71% | 38% |
 | Honor Magic7 Pro | 100% | 100% | 100% | 100% | 0% | 61% | 34% | 3% |
 
@@ -245,10 +245,10 @@
 | 10 | 淘宝/天猫 | OPPO Find X9 Pro | `taobao_OPPO_Find_X9_Pro.json` | 2.1 MB | 2,622 | 2,559 |
 | 11 | 淘宝/天猫 | OnePlus Ace 6T | `taobao_OnePlus_Ace_6T.json` | 1.0 MB | 1,360 | 1,336 |
 | 12 | 淘宝/天猫 | Redmi K90 Pro Max | `taobao_Redmi_K90_Pro.json` | 1.5 MB | 1,893 | 1,853 |
-| 13 | 淘宝/天猫 | iQOO 15 | `taobao_iQOO_15.json` | 2.4 MB | 2,455 | 2,394 |
-| 14 | 淘宝/天猫 | iPhone 17 Pro | `taobao_iphone17_pro.json` | 973 KB | 1,214 | 1,196 |
-| 15 | 淘宝/天猫 | VIVO X300 Pro | `taobao_vivo_X300_Pro.json` | 4.9 MB | 5,238 | 5,144 |
-| 16 | 淘宝/天猫 | Xiaomi 15 Pro | `taobao_xiaomi_15_pro.json` | 2.0 MB | 2,810 | 2,444 |
+| 13 | 淘宝/天猫 | Xiaomi 15 Pro | `taobao_Xiaomi_15_Pro.json` | 2.0 MB | 2,810 | 2,444 |
+| 14 | 淘宝/天猫 | iPhone 17 Pro | `taobao_iPhone17_Pro.json` | 973 KB | 1,214 | 1,196 |
+| 15 | 淘宝/天猫 | iQOO 15 | `taobao_iQOO_15.json` | 2.4 MB | 2,455 | 2,394 |
+| 16 | 淘宝/天猫 | VIVO X300 Pro | `taobao_vivo_X300_Pro.json` | 4.9 MB | 5,238 | 5,144 |
 | 17 | 淘宝/天猫 | realme GT7 Pro | `taobao_真我_GT7_Pro.json` | 1.7 MB | 1,823 | 1,707 |
 | 18 | 淘宝/天猫 | Honor Magic7 Pro | `taobao_荣耀 Magic_7_Pro.json` | 390 KB | 682 | 639 |
 | 19 | 拼多多 | Honor Magic7 Pro | `pdd_HONOR_magic7pro.json` | 1.4 MB | 1,758 | 1,753 |
