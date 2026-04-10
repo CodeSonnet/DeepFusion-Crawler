@@ -1,15 +1,15 @@
 # 🔍 跨平台电商评论数据有效性验证报告
 
-> 生成时间：2026-04-10 15:57:11
+> 生成时间：2026-04-10 16:36:25
 > 数据目录：`d:\develop\DeepFusion-Crawler\data`
 
 ## 一、验证总览
 
 | 指标 | 值 |
 |:---|:---|
-| 扫描文件数 | 27 |
-| **总评论数** | **70,182** |
-| 高置信度评论数（≥0.5） | 70,179 |
+| 扫描文件数 | 28 |
+| **总评论数** | **70,963** |
+| 高置信度评论数（≥0.5） | 70,960 |
 | ⚠️ 可疑评论数（<0.5） | 3 |
 | 🚨 大概率无关评论数（<0.3 或有品牌冲突） | 3 |
 | 品牌冲突评论数 | 0 |
@@ -34,7 +34,7 @@
 | Redmi K90 Pro Max | ✅ 0.863 | ✅ 0.864 | ✅ 0.851 |
 | iQOO 15 | ✅ 0.864 | ✅ 0.867 | ✅ 0.867 |
 | Honor Magic7 Pro | - | ✅ 0.856 | ✅ 0.860 |
-| realme GT7 Pro | - | ✅ 0.865 | ✅ 0.861 |
+| realme GT7 Pro | ✅ 0.860 | ✅ 0.865 | ✅ 0.861 |
 
 ### 2.2 可疑评论数（置信度 < 0.5）
 
@@ -49,7 +49,7 @@
 | Redmi K90 Pro Max | 0 / 0.0% | 0 / 0.0% | 0 / 0.0% |
 | iQOO 15 | 0 / 0.0% | 0 / 0.0% | 0 / 0.0% |
 | Honor Magic7 Pro | - | 0 / 0.0% | 0 / 0.0% |
-| realme GT7 Pro | - | 0 / 0.0% | 0 / 0.0% |
+| realme GT7 Pro | 0 / 0.0% | 0 / 0.0% | 0 / 0.0% |
 
 ### 2.3 品牌冲突评论数
 
@@ -66,7 +66,7 @@
 | Redmi K90 Pro Max | ✅ 0 | ✅ 0 | ✅ 0 |
 | iQOO 15 | ✅ 0 | ✅ 0 | ✅ 0 |
 | Honor Magic7 Pro | - | ✅ 0 | ✅ 0 |
-| realme GT7 Pro | - | ✅ 0 | ✅ 0 |
+| realme GT7 Pro | ✅ 0 | ✅ 0 | ✅ 0 |
 
 ## 三、product_name 字段一致性分析
 
@@ -80,16 +80,17 @@
 | 京东 | `jd_Redmi_K90_pro_max.json` | Redmi K90 Pro Max | 1 | ✅ 一致 |
 | 京东 | `jd_iQOO_15.json` | iQOO 15 | 1 | ✅ 一致 |
 | 京东 | `jd_iphone17_pro.json` | iPhone 17 Pro | 1 | ✅ 一致 |
+| 京东 | `jd_realme_GT7_Pro.json` | realme GT7 Pro | 1 | ✅ 一致 |
 | 京东 | `jd_vivo_X300_Pro.json` | VIVO X300 Pro | 1 | ✅ 一致 |
 | 京东 | `jd_xiaomi_15_pro.json` | Xiaomi 15 Pro | 1 | ✅ 一致 |
-| 淘宝/天猫 | `taobao_Huawei_P70.json` | Huawei P70 | 1 | ✅ 一致 |
+| 淘宝/天猫 | `taobao_HuaWei_P70.json` | Huawei P70 | 1 | ✅ 一致 |
 | 淘宝/天猫 | `taobao_OPPO_Find_X9_Pro.json` | OPPO Find X9 Pro | 1 | ✅ 一致 |
 | 淘宝/天猫 | `taobao_OnePlus_Ace_6T.json` | OnePlus Ace 6T | 1 | ✅ 一致 |
 | 淘宝/天猫 | `taobao_Redmi_K90_Pro.json` | Redmi K90 Pro Max | 1 | ✅ 一致 |
-| 淘宝/天猫 | `taobao_VIVO_X300_Pro.json` | VIVO X300 Pro | 2 | ⚠️ 存在多个值 |
-| 淘宝/天猫 | `taobao_Xiaomi_15_Pro.json` | Xiaomi 15 Pro | 1 | ✅ 一致 |
-| 淘宝/天猫 | `taobao_iPhone17_Pro.json` | iPhone 17 Pro | 1 | ✅ 一致 |
 | 淘宝/天猫 | `taobao_iQOO_15.json` | iQOO 15 | 1 | ✅ 一致 |
+| 淘宝/天猫 | `taobao_iphone17_pro.json` | iPhone 17 Pro | 1 | ✅ 一致 |
+| 淘宝/天猫 | `taobao_vivo_X300_Pro.json` | VIVO X300 Pro | 2 | ⚠️ 存在多个值 |
+| 淘宝/天猫 | `taobao_xiaomi_15_pro.json` | Xiaomi 15 Pro | 1 | ✅ 一致 |
 | 淘宝/天猫 | `taobao_真我_GT7_Pro.json` | realme GT7 Pro | 1 | ✅ 一致 |
 | 淘宝/天猫 | `taobao_荣耀 Magic_7_Pro.json` | Honor Magic7 Pro | 1 | ✅ 一致 |
 | 拼多多 | `pdd_HONOR_magic7pro.json` | Honor Magic7 Pro | 12 | 🚨 高度分散（12个值） |
@@ -105,7 +106,7 @@
 
 ### 3.1 product_name 不一致文件详情
 
-**淘宝/天猫 - `taobao_VIVO_X300_Pro.json`**（目标：VIVO X300 Pro）
+**淘宝/天猫 - `taobao_vivo_X300_Pro.json`**（目标：VIVO X300 Pro）
 
 | product_name 值 | 评论数 | 占比 |
 |:---|---:|---:|
@@ -369,7 +370,7 @@
 
 | 平台 | [0.0, 0.2) | [0.2, 0.4) | [0.4, 0.6) | [0.6, 0.8) | [0.8, 1.0] | 总计 |
 |:---|---:|---:|---:|---:|---:|---:|
-| 京东 | 0 | 0 | 0 | 2,063 | 8,484 | 10,547 |
+| 京东 | 0 | 0 | 0 | 2,075 | 9,253 | 11,328 |
 | 淘宝/天猫 | 0 | 3 | 0 | 1,863 | 18,496 | 20,362 |
 | 拼多多 | 0 | 0 | 0 | 4,210 | 35,063 | 39,273 |
 
@@ -386,19 +387,19 @@
 | Redmi K90 Pro Max | 0 | 0 | 0 | 2,000 | 8,299 | 10,299 |
 | iQOO 15 | 0 | 0 | 0 | 265 | 7,463 | 7,728 |
 | Honor Magic7 Pro | 0 | 0 | 0 | 0 | 2,440 | 2,440 |
-| realme GT7 Pro | 0 | 0 | 0 | 23 | 7,053 | 7,076 |
+| realme GT7 Pro | 0 | 0 | 0 | 35 | 7,822 | 7,857 |
 
 ## 六、最可疑评论样例
 
 > 以下列出各文件中置信度最低的评论样例，帮助人工核实验证逻辑的准确性。
 
-### 淘宝/天猫 - Huawei P70（`taobao_Huawei_P70.json`）
+### 淘宝/天猫 - Huawei P70（`taobao_HuaWei_P70.json`）
 
 | # | 置信度 | SKU（截取） | 评论内容（截取） | 疑似原因 |
 |---:|---:|:---|:---|:---|
 | 1 | 0.30 | 未知 | 该用户未及时主动评价，系统默认评价 | SKU结构异常，非标准手机SKU格式 (sku=未知) |
 
-### 淘宝/天猫 - iPhone 17 Pro（`taobao_iPhone17_Pro.json`）
+### 淘宝/天猫 - iPhone 17 Pro（`taobao_iphone17_pro.json`）
 
 | # | 置信度 | SKU（截取） | 评论内容（截取） | 疑似原因 |
 |---:|---:|:---|:---|:---|
@@ -417,33 +418,34 @@
 
 | 优先级 | 平台 | 文件 | 产品 | 可疑率 | 品牌冲突数 | 建议操作 |
 |---:|:---|:---|:---|---:|---:|:---|
-| 1 | 淘宝/天猫 | `taobao_Huawei_P70.json` | Huawei P70 | 0.4% | 0 | 🔸 少量可疑，可忽略 |
-| 2 | 淘宝/天猫 | `taobao_iPhone17_Pro.json` | iPhone 17 Pro | 0.2% | 0 | 🔸 少量可疑，可忽略 |
+| 1 | 淘宝/天猫 | `taobao_HuaWei_P70.json` | Huawei P70 | 0.4% | 0 | 🔸 少量可疑，可忽略 |
+| 2 | 淘宝/天猫 | `taobao_iphone17_pro.json` | iPhone 17 Pro | 0.2% | 0 | 🔸 少量可疑，可忽略 |
 | 3 | 京东 | `jd_HuaWei_P70.json` | Huawei P70 | 0.0% | 0 | ✅ 无需清洗 |
 | 4 | 京东 | `jd_OPPO_Find_X9_Pro.json` | OPPO Find X9 Pro | 0.0% | 0 | ✅ 无需清洗 |
 | 5 | 京东 | `jd_Redmi_K90_pro_max.json` | Redmi K90 Pro Max | 0.0% | 0 | ✅ 无需清洗 |
 | 6 | 京东 | `jd_iQOO_15.json` | iQOO 15 | 0.0% | 0 | ✅ 无需清洗 |
 | 7 | 京东 | `jd_iphone17_pro.json` | iPhone 17 Pro | 0.0% | 0 | ✅ 无需清洗 |
-| 8 | 京东 | `jd_vivo_X300_Pro.json` | VIVO X300 Pro | 0.0% | 0 | ✅ 无需清洗 |
-| 9 | 京东 | `jd_xiaomi_15_pro.json` | Xiaomi 15 Pro | 0.0% | 0 | ✅ 无需清洗 |
-| 10 | 淘宝/天猫 | `taobao_OPPO_Find_X9_Pro.json` | OPPO Find X9 Pro | 0.0% | 0 | ✅ 无需清洗 |
-| 11 | 淘宝/天猫 | `taobao_OnePlus_Ace_6T.json` | OnePlus Ace 6T | 0.0% | 0 | ✅ 无需清洗 |
-| 12 | 淘宝/天猫 | `taobao_Redmi_K90_Pro.json` | Redmi K90 Pro Max | 0.0% | 0 | ✅ 无需清洗 |
-| 13 | 淘宝/天猫 | `taobao_VIVO_X300_Pro.json` | VIVO X300 Pro | 0.0% | 0 | ✅ 无需清洗 |
-| 14 | 淘宝/天猫 | `taobao_Xiaomi_15_Pro.json` | Xiaomi 15 Pro | 0.0% | 0 | ✅ 无需清洗 |
-| 15 | 淘宝/天猫 | `taobao_iQOO_15.json` | iQOO 15 | 0.0% | 0 | ✅ 无需清洗 |
-| 16 | 淘宝/天猫 | `taobao_真我_GT7_Pro.json` | realme GT7 Pro | 0.0% | 0 | ✅ 无需清洗 |
-| 17 | 淘宝/天猫 | `taobao_荣耀 Magic_7_Pro.json` | Honor Magic7 Pro | 0.0% | 0 | ✅ 无需清洗 |
-| 18 | 拼多多 | `pdd_HONOR_magic7pro.json` | Honor Magic7 Pro | 0.0% | 0 | ✅ 无需清洗 |
-| 19 | 拼多多 | `pdd_Huawei_P70.json` | Huawei P70 | 0.0% | 0 | ✅ 无需清洗 |
-| 20 | 拼多多 | `pdd_OPPO_Find_X9_Pro.json` | OPPO Find X9 Pro | 0.0% | 0 | ✅ 无需清洗 |
-| 21 | 拼多多 | `pdd_OnePlus_Ace6T.json` | OnePlus Ace 6T | 0.0% | 0 | ✅ 无需清洗 |
-| 22 | 拼多多 | `pdd_Realme_GT7Pro.json` | realme GT7 Pro | 0.0% | 0 | ✅ 无需清洗 |
-| 23 | 拼多多 | `pdd_Redmi_K90ProMax.json` | Redmi K90 Pro Max | 0.0% | 0 | ✅ 无需清洗 |
-| 24 | 拼多多 | `pdd_VIVO_X300_Pro.json` | VIVO X300 Pro | 0.0% | 0 | ✅ 无需清洗 |
-| 25 | 拼多多 | `pdd_Xiaomi_15_Pro.json` | Xiaomi 15 Pro | 0.0% | 0 | ✅ 无需清洗 |
-| 26 | 拼多多 | `pdd_iPhone17_Pro.json` | iPhone 17 Pro | 0.0% | 0 | ✅ 无需清洗 |
-| 27 | 拼多多 | `pdd_iQOO15.json` | iQOO 15 | 0.0% | 0 | ✅ 无需清洗 |
+| 8 | 京东 | `jd_realme_GT7_Pro.json` | realme GT7 Pro | 0.0% | 0 | ✅ 无需清洗 |
+| 9 | 京东 | `jd_vivo_X300_Pro.json` | VIVO X300 Pro | 0.0% | 0 | ✅ 无需清洗 |
+| 10 | 京东 | `jd_xiaomi_15_pro.json` | Xiaomi 15 Pro | 0.0% | 0 | ✅ 无需清洗 |
+| 11 | 淘宝/天猫 | `taobao_OPPO_Find_X9_Pro.json` | OPPO Find X9 Pro | 0.0% | 0 | ✅ 无需清洗 |
+| 12 | 淘宝/天猫 | `taobao_OnePlus_Ace_6T.json` | OnePlus Ace 6T | 0.0% | 0 | ✅ 无需清洗 |
+| 13 | 淘宝/天猫 | `taobao_Redmi_K90_Pro.json` | Redmi K90 Pro Max | 0.0% | 0 | ✅ 无需清洗 |
+| 14 | 淘宝/天猫 | `taobao_iQOO_15.json` | iQOO 15 | 0.0% | 0 | ✅ 无需清洗 |
+| 15 | 淘宝/天猫 | `taobao_vivo_X300_Pro.json` | VIVO X300 Pro | 0.0% | 0 | ✅ 无需清洗 |
+| 16 | 淘宝/天猫 | `taobao_xiaomi_15_pro.json` | Xiaomi 15 Pro | 0.0% | 0 | ✅ 无需清洗 |
+| 17 | 淘宝/天猫 | `taobao_真我_GT7_Pro.json` | realme GT7 Pro | 0.0% | 0 | ✅ 无需清洗 |
+| 18 | 淘宝/天猫 | `taobao_荣耀 Magic_7_Pro.json` | Honor Magic7 Pro | 0.0% | 0 | ✅ 无需清洗 |
+| 19 | 拼多多 | `pdd_HONOR_magic7pro.json` | Honor Magic7 Pro | 0.0% | 0 | ✅ 无需清洗 |
+| 20 | 拼多多 | `pdd_Huawei_P70.json` | Huawei P70 | 0.0% | 0 | ✅ 无需清洗 |
+| 21 | 拼多多 | `pdd_OPPO_Find_X9_Pro.json` | OPPO Find X9 Pro | 0.0% | 0 | ✅ 无需清洗 |
+| 22 | 拼多多 | `pdd_OnePlus_Ace6T.json` | OnePlus Ace 6T | 0.0% | 0 | ✅ 无需清洗 |
+| 23 | 拼多多 | `pdd_Realme_GT7Pro.json` | realme GT7 Pro | 0.0% | 0 | ✅ 无需清洗 |
+| 24 | 拼多多 | `pdd_Redmi_K90ProMax.json` | Redmi K90 Pro Max | 0.0% | 0 | ✅ 无需清洗 |
+| 25 | 拼多多 | `pdd_VIVO_X300_Pro.json` | VIVO X300 Pro | 0.0% | 0 | ✅ 无需清洗 |
+| 26 | 拼多多 | `pdd_Xiaomi_15_Pro.json` | Xiaomi 15 Pro | 0.0% | 0 | ✅ 无需清洗 |
+| 27 | 拼多多 | `pdd_iPhone17_Pro.json` | iPhone 17 Pro | 0.0% | 0 | ✅ 无需清洗 |
+| 28 | 拼多多 | `pdd_iQOO15.json` | iQOO 15 | 0.0% | 0 | ✅ 无需清洗 |
 
 ---
 *本报告由 `data_relevance_validator.py` 自动生成，如需更新请重新运行脚本。*
