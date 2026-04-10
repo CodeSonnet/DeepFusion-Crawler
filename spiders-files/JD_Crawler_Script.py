@@ -19,9 +19,9 @@ SHOP_URLS = [
     #"https://item.jd.com/10187863652636.html?pcdk=MJXotX3ztPnEsKRLYdwrtzloQZu7NrhhLhbHbDIhsOxFOn2RkwHk1tA2eWWfDI_d.3z6a.aI3x&spmTag=YTAyNDAuYjAwMjQ5My5jMDAwMDQwMjcuMiUyM3NrdV9jYXJk",
     #没爬完"https://item.jd.com/100210928613.html?pcdk=2U5jRKbc5la5n3RjGDAgr7GR3iyxg1gxjXLHoluygpVF-wwBhIX0HAlRDBs0Aq_b.3z6a.aI3x&spmTag=YTAyMTkuYjAwMjM1Ni5jMDAwMDQ2ODkuMSUyM2hpc2tleXdvcmQlMkNhMDI0MC5iMDAyNDkzLmMwMDAwNDAyNy4yJTIzc2t1X2NhcmQ",
     #realme GT7 Pro
-    "https://item.jd.com/100124190367.html?pcdk=GcYUH02Eq-XhD6ZxXjhhnzUtHZuwAh4dPxiBm6snb7ct4Yma60dbdyWGDhTjbU-r.3z6a.aI3x&spmTag=YTAyMTkuYjAwMjM1Ni5jMDAwMDQ2ODkuc2VhcmNoX2NvbmZpcm0lMkNhMDI0MC5iMDAyNDkzLmMwMDAwNDAyNy4yJTIzc2t1X2NhcmQ",
-    "https://item.jd.com/10136711480481.html?pcdk=GcYUH02Eq-XhD6ZxXjhhn9ncXzQzqLOkzL_rJnOpa6lqR8-1DDHa03cS5qzJR8Yk.3z6a.aI3x&spmTag=YTAyMTkuYjAwMjM1Ni5jMDAwMDQ2ODkuc2VhcmNoX2NvbmZpcm0lMkNhMDI0MC5iMDAyNDkzLmMwMDAwNDAyNy4xJTIzc2t1X2NhcmQ",
-    "",
+    #"https://item.jd.com/100124190367.html?pcdk=GcYUH02Eq-XhD6ZxXjhhnzUtHZuwAh4dPxiBm6snb7ct4Yma60dbdyWGDhTjbU-r.3z6a.aI3x&spmTag=YTAyMTkuYjAwMjM1Ni5jMDAwMDQ2ODkuc2VhcmNoX2NvbmZpcm0lMkNhMDI0MC5iMDAyNDkzLmMwMDAwNDAyNy4yJTIzc2t1X2NhcmQ",
+    #"https://item.jd.com/10136711480481.html?pcdk=GcYUH02Eq-XhD6ZxXjhhn9ncXzQzqLOkzL_rJnOpa6lqR8-1DDHa03cS5qzJR8Yk.3z6a.aI3x&spmTag=YTAyMTkuYjAwMjM1Ni5jMDAwMDQ2ODkuc2VhcmNoX2NvbmZpcm0lMkNhMDI0MC5iMDAyNDkzLmMwMDAwNDAyNy4xJTIzc2t1X2NhcmQ",
+    "https://item.jd.com/10123644181026.html?pcdk=EtYbb_JKlLu1IvhqE1QAaDeBtkaX4wFq3w-RJnRFGh5Jf3vQpGh2izphU-mswWsh.3z6a.aI3x&spmTag=YTAyMTkuYjAwMjM1Ni5jMDAwMDQ2ODkuMSUyM2hpc2tleXdvcmQlMkNhMDI0MC5iMDAyNDkzLmMwMDAwNDAyNy40JTIzc2t1X2NhcmQ",
 ]
 
 SCROLL_TIMES = 5000
