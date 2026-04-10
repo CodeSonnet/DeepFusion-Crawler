@@ -8,7 +8,7 @@ import math
 from DrissionPage import ChromiumPage, ChromiumOptions
 
 # ================= ⚙️ 配置区域 =================
-PRODUCT_NAME = "真我 GT 7 Pro"  # 产品名称，用于标记数据来源
+PRODUCT_NAME = "HuaWei P70"  # 产品名称，用于标记数据来源
 
 # 淘宝/天猫商品链接列表
 SHOP_URLS = [
@@ -34,15 +34,17 @@ SHOP_URLS = [
     #没爬完"https://detail.tmall.com/item.htm?abbucket=9&id=838577791595&mi_id=0000K6JycvsvjYwhyB3zkH9CazEPrW68sOc0TW9W9fVTxAY&ns=1&priceTId=213e076717756167845427286e1112&skuId=5639845648822&spm=a21n57.1.hoverItem.2&utparam=%7B%22aplus_abtest%22%3A%22840d76d9b22855cb51ff554e5dfa2ddb%22%7D&xxc=taobaoSearch",
     #OnePlus Ace 6T,
     #"https://detail.tmall.com/item.htm?abbucket=9&id=993016602639&mi_id=0000eHVEfn3wqC6VYFj9DDnN0r6xpMyuNvWGLd6utiW9JoQ&ns=1&priceTId=214780b117757382553954571e1113&skuId=5980215096523&spm=a21n57.1.hoverItem.6&utparam=%7B%22aplus_abtest%22%3A%22d09ca1836f9a5c20a1be1fde51c1fedb%22%7D&xxc=taobaoSearch",
-    "https://detail.tmall.com/item.htm?abbucket=9&id=994491524076&mi_id=0000M0f9ApC-0guQ2LlnY4HSRuCe0J1NlhxDw5ZtKAB6d6M&ns=1&priceTId=214780b117757382553954571e1113&skuId=6149333410906&spm=a21n57.1.hoverItem.7&utparam=%7B%22aplus_abtest%22%3A%22b2dba1419310b3a550f7d1274b372c4e%22%7D&xxc=taobaoSearch",
-    "https://detail.tmall.com/item.htm?ali_refid=a3_420434_1006%3A1646380005%3AH%3Aes%2F9euL6D3Ak%2FBhb5WI85Rj18NxTpMbD%3A4922128aae39175fab75f36671ff68eb&ali_trackid=318_4922128aae39175fab75f36671ff68eb&fpChannel=101&fpChannelSig=56a659dd1add7b066df01293218936c87989e9e0&id=994046639924&maskChannel=bybtrs&mi_id=0000BINra9kQtVkLPs0bhyCf7ovx5xgxcTKY4O-MjZZn4EE&mm_sceneid=0_0_2907870118_0&priceTId=214780b117757382553954571e1113&skuId=6210734042283&spm=a21n57.1.hoverItem.2&u_channel=bybtqdyh&umpChannel=bybtqdyh&utparam=%7B%22aplus_abtest%22%3A%2233a280c2c4521a78324f27f2fcf67ae1%22%7D&xxc=ad_ztc",
-    "",
-    "",
+    #"https://detail.tmall.com/item.htm?abbucket=9&id=994491524076&mi_id=0000M0f9ApC-0guQ2LlnY4HSRuCe0J1NlhxDw5ZtKAB6d6M&ns=1&priceTId=214780b117757382553954571e1113&skuId=6149333410906&spm=a21n57.1.hoverItem.7&utparam=%7B%22aplus_abtest%22%3A%22b2dba1419310b3a550f7d1274b372c4e%22%7D&xxc=taobaoSearch",
+    #"https://detail.tmall.com/item.htm?ali_refid=a3_420434_1006%3A1646380005%3AH%3Aes%2F9euL6D3Ak%2FBhb5WI85Rj18NxTpMbD%3A4922128aae39175fab75f36671ff68eb&ali_trackid=318_4922128aae39175fab75f36671ff68eb&fpChannel=101&fpChannelSig=56a659dd1add7b066df01293218936c87989e9e0&id=994046639924&maskChannel=bybtrs&mi_id=0000BINra9kQtVkLPs0bhyCf7ovx5xgxcTKY4O-MjZZn4EE&mm_sceneid=0_0_2907870118_0&priceTId=214780b117757382553954571e1113&skuId=6210734042283&spm=a21n57.1.hoverItem.2&u_channel=bybtqdyh&umpChannel=bybtqdyh&utparam=%7B%22aplus_abtest%22%3A%2233a280c2c4521a78324f27f2fcf67ae1%22%7D&xxc=ad_ztc",
+    #华为
+    #"https://detail.tmall.com/item.htm?id=785346455379&mi_id=0000r2XXH7q2-7Ht854D2H397_6aKowbPeCTWXsnyjx7w3k&spm=a21n57.shop_search.0.0.f81a3e74fJQUzT&sku_properties=5919063%3A6536025",
+    "https://detail.tmall.com/item.htm?abbucket=15&id=779627964258&pisk=gekZAubiOdpaGnYo4022TN_YZUeTi-8Wgxabmmm0fP4ihlwVo4gNCtw_GtlE22-Thqi0uquQJqPvXra0uqim1H9WFcnTH-22PL959iFL_V7gStx0-uEkAlvyhyIYH-YWu6606Lyx7aeWqGf3xyEVIlfioym3DyqGs-00-WqumO20nqxUtuZums4giwm3JuQGjoVc-pqzqofGnqmHYoU3o-VioDxUDy4mMaw0e9rzshyK0mtwFjNarc4FUDHUjMzyeyBmIvqg_xmg8kZILlParSSz-YMiRmDsBWdRN-nIaqlm-pWZuccooPMHrtzjwyNjIqvR4yDZ0vPtONfg4RzaZAVh43eTiXkUCAYAwDiUS7yIOBL_GRuZwzFM9e3qYPgmQWbwRrGSAAVEre6EkSli7k2l4pbYxhhIHf7cg5qLYzteYNRs1UPeXwjdMsFOvkzWXhCAM5qLYzteYsCY6MEUPhKO.&rn=5fe1ce850c8eaaa5896be5c7e33630f0&spm=a1z10.3-b-s.w4011-21604150163.48.59172c5a3BwF2r&sku_properties=5919063%3A6536025",
+    "https://detail.tmall.com/item.htm?abbucket=9&id=785497960712&mi_id=00005Lp_ADFu33CKa_lTW1wDrqgSJe4rCP6PlRzB34v_U04&ns=1&priceTId=2147820a17758235408173620e11ee&skuId=5887396313476&spm=a21n57.1.hoverItem.11&utparam=%7B%22aplus_abtest%22%3A%2252f5d2daec08b6c78b7110111c9da53e%22%7D&xxc=taobaoSearch",
     "",
 ] #URL
 
 SCROLL_TIMES = 1000  # 淘宝有效评论通常较少，1000轮绝对够用了
-JSON_FILE = 'data/TaoBao/taobao_OnePlus_Ace_6T.json'
+JSON_FILE = 'data/taobao_HuaWei_P70.json'
 USER_DATA_DIR = './Taobao_User_Data'  # 🔥 淘宝专属：用于保存你的登录状态(Cookies)
 # ===============================================
 
