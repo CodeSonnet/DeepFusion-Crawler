@@ -119,20 +119,20 @@ PRODUCT_FINGERPRINTS = {
         "brand_keywords": ["iphone", "苹果", "apple"],
         "model_keywords": ["17 pro", "17pro", "iphone17", "iphone 17", "a19"],
         "sku_color_keywords": ["星宇橙", "薰衣草紫", "青雾蓝", "鼠尾草绿", "深青",
-                               "群青"],
+                               "群青", "深蓝色"],
         "brand_id":       "apple",
     },
     "Huawei P70": {
         "brand_keywords": ["华为", "huawei", "鸿蒙"],
         "model_keywords": ["p70", "pura70", "pura 70", "p 70", "麒麟"],
-        "sku_color_keywords": ["冰晶蓝", "雪域白", "羽砂黑", "北斗", "卫星消息",
-                               "星河金"],
+        "sku_color_keywords": ["冰晶蓝", "羽砂黑", "北斗", "卫星消息",
+                               "星河金", "雪域白"],
         "brand_id":       "huawei",
     },
     "Xiaomi 15 Pro": {
         "brand_keywords": ["小米", "xiaomi", "miui", "hyper os", "澎湃"],
         "model_keywords": ["15 pro", "15pro", "小米15"],
-        "sku_color_keywords": ["岩石灰", "云杉绿"],
+        "sku_color_keywords": ["岩石灰", "云杉绿", "丁香紫", "浅草绿"],
         "brand_id":       "xiaomi",
     },
     "VIVO X300 Pro": {
@@ -152,31 +152,37 @@ PRODUCT_FINGERPRINTS = {
     "OnePlus Ace 6T": {
         "brand_keywords": ["一加", "oneplus", "1+"],
         "model_keywords": ["ace6t", "ace 6t", "一加ace", "oneplus ace"],
-        "sku_color_keywords": [],
+        "sku_color_keywords": ["闪速黑", "掠影绿", "幻影紫", "电光紫"],
         "brand_id":       "oneplus",
     },
     "Redmi K90 Pro Max": {
         "brand_keywords": ["红米", "redmi", "小米", "xiaomi"],
         "model_keywords": ["k90", "k90 pro", "k90pro", "红米k90"],
-        "sku_color_keywords": [],
+        "sku_color_keywords": ["丹宁色", "流金白", "墨韵", "冰峰蓝",
+                               "冠军版"],
         "brand_id":       "xiaomi",
     },
     "iQOO 15": {
         "brand_keywords": ["iqoo", "vivo"],
         "model_keywords": ["iqoo15", "iqoo 15"],
-        "sku_color_keywords": [],
+        # 注意: 「传奇」「赛道」不加「版」后缀，因为拼多多 SKU 中部分写法不带「版」
+        # 移除了「追光」避免与 OPPO「追光红」子串误匹配
+        # 移除了「旷野」避免与 VIVO「旷野棕」子串误匹配
+        "sku_color_keywords": ["凌云", "传奇版", "传奇", "赛道版", "赛道"],
         "brand_id":       "iqoo",
     },
     "Honor Magic7 Pro": {
         "brand_keywords": ["荣耀", "honor"],
         "model_keywords": ["magic7", "magic 7", "magic7 pro", "magic7pro"],
-        "sku_color_keywords": [],
+        "sku_color_keywords": ["月影灰", "绒黑色", "流光紫", "海湖青",
+                               "雪域白", "天际蓝"],
         "brand_id":       "honor",
     },
     "realme GT7 Pro": {
         "brand_keywords": ["realme", "真我"],
         "model_keywords": ["gt7", "gt 7", "gt7 pro", "gt7pro"],
-        "sku_color_keywords": [],
+        "sku_color_keywords": ["光域白", "火星", "星际蓝", "星迹钛",
+                               "海王星"],
         "brand_id":       "realme",
     },
 }
@@ -201,6 +207,13 @@ ALL_BRANDS = {
     "zte":      ["中兴", "zte"],
     "nubia":    ["努比亚", "nubia"],
     "lenovo":   ["联想", "lenovo"],
+}
+
+# 品牌关键词排除规则 — 某些品牌关键词在特定上下文中并非指代品牌
+# 例如「王者荣耀」是腾讯手机游戏名，不是荣耀(Honor)品牌
+BRAND_EXCLUSION_CONTEXTS = {
+    "honor": ["王者荣耀"],              # 游戏名，非品牌
+    "samsung": ["三星级", "三星好评"],    # 评价用语，非品牌
 }
 
 # 正常SKU格式验证模式 — 用于判断SKU是否为正常的"颜色+配置"格式
@@ -273,15 +286,28 @@ def detect_brands_in_text(text: str) -> set[str]:
     """
     检测文本中出现的所有品牌标识符。
     返回品牌ID的集合，如 {'apple', 'samsung'}。
+
+    会先排除已知的非品牌上下文（如「王者荣耀」中的「荣耀」），
+    避免将游戏名、评价用语等误判为品牌。
     """
     if not text:
         return set()
     text_lower = text.lower()
     found = set()
     for brand_id, keywords in ALL_BRANDS.items():
+        # 获取该品牌的排除上下文
+        exclusions = BRAND_EXCLUSION_CONTEXTS.get(brand_id, [])
         for kw in keywords:
-            if kw.lower() in text_lower:
-                found.add(brand_id)
+            kw_lower = kw.lower()
+            if kw_lower in text_lower:
+                # 检查是否属于排除上下文（如「王者荣耀」中的「荣耀」）
+                is_excluded = False
+                for excl in exclusions:
+                    if excl.lower() in text_lower:
+                        is_excluded = True
+                        break
+                if not is_excluded:
+                    found.add(brand_id)
                 break
     return found
 
@@ -452,6 +478,11 @@ class FileRelevanceProfile:
         # SKU 中包含产品特征色（如 iPhone 的"星宇橙"）→ 强正面
         if sku_color_matches:
             score += 0.15
+
+        # SKU 是标准电商格式（颜色+容量）→ 弱正面
+        # 正常格式的 SKU 说明评论来自合法商品页面，而非配件/手机壳等
+        if sku_is_normal_format and not result.sku_brand_match and not sku_color_matches:
+            score += 0.10
 
         # 评论内容中提到了目标型号（如"17 pro"）→ 中等正面
         if result.content_model_match:
